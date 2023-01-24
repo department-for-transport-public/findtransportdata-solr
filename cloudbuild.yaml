@@ -1,0 +1,17 @@
+steps:
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build
+  args:
+  - 'build'
+  - '--build-arg'
+  - 'version=$SHORT_SHA'
+  - '-t'
+  - 'europe-docker.pkg.dev/dft-rsss-findtransptdata-dev/dft-nap/solr:$SHORT_SHA'
+  - '.'
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push
+  args:
+  - 'push'
+  - 'europe-docker.pkg.dev/dft-rsss-findtransptdata-dev/dft-nap/solr:$SHORT_SHA'
